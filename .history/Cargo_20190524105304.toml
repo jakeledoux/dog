@@ -1,0 +1,10 @@
+[package]
+name = "dog"
+version = "0.1.0"
+authors = ["Jake Ledoux <contactjakeledoux@gmail.com>"]
+edition = "2018"
+description = "A cat clone by Jake Ledoux."
+
+[dependencies]
+colored = "1.8"
+reqwest = ""
