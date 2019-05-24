@@ -22,7 +22,7 @@ fn get_contents(filename: &PathBuf) -> std::io::Result<String> {
 }
 
 fn main() -> std::io::Result<()> {
-    let mut silent: bool = false;
+    let mut silent: bool = true;
     let mut color: bool = true;
     // Get current path
     let path = env::current_dir()?;
@@ -36,12 +36,12 @@ fn main() -> std::io::Result<()> {
         if argument.to_lowercase() == "-h" || argument.to_lowercase() == "--help"
         || argument.to_lowercase() == "-?" || argument.to_lowercase() == "?" {
             println!("dog | A cat clone with HTTP. Written by Jake Ledoux, 2019\nUsage:\n\tdog [file]\n\tdog [file1] [file2] [etc...]\n\tdog https://[url]");
-            println!("Flags:\n\t-H, --help: Show this help screen\n\t-S, --silent: Silence filenames in output\n\t-N, --nocolor: Leave filepaths gray");
+            println!("Flags:\n\t-H, --help: Show this help screen\n\t-P, --path: Show filepaths in output\n\t-N, --nocolor: Leave filepaths gray");
             return Ok(());
         }
         // Silent argument
-        else if argument.to_lowercase() == "-s" || argument.to_lowercase() == "--silent" {
-            silent = true;
+        else if argument.to_lowercase() == "-p" || argument.to_lowercase() == "--path" {
+            silent = false;
         }
         // No-color argument
         else if argument.to_lowercase() == "-n" || argument.to_lowercase() == "--nocolor" {
