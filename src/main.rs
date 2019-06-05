@@ -1,7 +1,7 @@
 // For reading files
 use std::fs::File;
-use std::io::BufReader;
 use std::io::prelude::*;
+use std::io::BufReader;
 // For making HTTP requests
 use reqwest;
 // For launch arguments
@@ -33,8 +33,11 @@ fn main() -> std::io::Result<()> {
     let mut filepaths: Vec<PathBuf> = Vec::new();
     for argument in &args[1..] {
         // Help argument
-        if argument.to_lowercase() == "-h" || argument.to_lowercase() == "--help"
-        || argument.to_lowercase() == "-?" || argument.to_lowercase() == "?" {
+        if argument.to_lowercase() == "-h"
+            || argument.to_lowercase() == "--help"
+            || argument.to_lowercase() == "-?"
+            || argument.to_lowercase() == "?"
+        {
             println!("dog | A cat clone with HTTP. Written by Jake Ledoux, 2019\nUsage:\n\tdog [file]\n\tdog [file1] [file2] [etc...]\n\tdog https://[url]");
             println!("Flags:\n\t-H, --help: Show this help screen\n\t-P, --path: Show filepaths in output\n\t-N, --nocolor: Leave filepaths gray\n\t-V, --version: Print version of software.");
             return Ok(());
@@ -67,7 +70,7 @@ fn main() -> std::io::Result<()> {
     }
 
     // A bit of fun
-    if filepaths.len() == 0 && !silent{
+    if filepaths.len() == 0 && !silent {
         println!("woof!");
         return Ok(());
     }
@@ -77,7 +80,9 @@ fn main() -> std::io::Result<()> {
         // Print file path
         if !silent {
             if color {
-                println!("{}", {format!("[{}]", path.display()).bright_cyan().bold()});
+                println!("{}", {
+                    format!("[{}]", path.display()).bright_cyan().bold()
+                });
             } else {
                 println!("[{}]", path.display());
             }
@@ -87,13 +92,12 @@ fn main() -> std::io::Result<()> {
         if path.to_str().unwrap().starts_with("http") {
             contents = match reqwest::get(path.to_str().unwrap()) {
                 Ok(mut result) => result.text().unwrap(),
-                Err(error) => format!("Failed to get contents of {}. {}", path.display(), error)
+                Err(error) => format!("Failed to get contents of {}. {}", path.display(), error),
             }
-        }
-        else {
+        } else {
             contents = match get_contents(&path) {
                 Ok(result) => result,
-                Err(error) => format!("Failed to get contents of {}. {}", path.display(), error)
+                Err(error) => format!("Failed to get contents of {}. {}", path.display(), error),
             };
         }
         println!("{}", contents);
