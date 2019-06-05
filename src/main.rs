@@ -70,7 +70,7 @@ fn main() -> std::io::Result<()> {
     }
 
     // A bit of fun
-    if filepaths.len() == 0 && !silent {
+    if filepaths.len() == 0 {
         println!("woof!");
         return Ok(());
     }
