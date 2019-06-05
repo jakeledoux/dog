@@ -10,4 +10,5 @@ Flags:
         -H, --help: Show this help screen
         -P, --path: Show filepaths in output
         -N, --nocolor: Leave filepaths gray
+        -V, --version: Print version of software.
 </pre>
