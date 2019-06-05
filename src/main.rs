@@ -50,6 +50,9 @@ fn main() -> std::io::Result<()> {
         else if argument.starts_with("http") {
             filepaths.push(PathBuf::from(argument));
         }
+        else if argument.ends_with(".com") {
+            filepaths.push(PathBuf::from(format!("https://{}", argument)));
+        }
         else {
             filepaths.push(path.clone());
             filepaths.last_mut().unwrap().push(argument);
