@@ -36,7 +36,7 @@ fn main() -> std::io::Result<()> {
         if argument.to_lowercase() == "-h" || argument.to_lowercase() == "--help"
         || argument.to_lowercase() == "-?" || argument.to_lowercase() == "?" {
             println!("dog | A cat clone with HTTP. Written by Jake Ledoux, 2019\nUsage:\n\tdog [file]\n\tdog [file1] [file2] [etc...]\n\tdog https://[url]");
-            println!("Flags:\n\t-H, --help: Show this help screen\n\t-P, --path: Show filepaths in output\n\t-N, --nocolor: Leave filepaths gray");
+            println!("Flags:\n\t-H, --help: Show this help screen\n\t-P, --path: Show filepaths in output\n\t-N, --nocolor: Leave filepaths gray\n\t-V, --version: Print version of software.");
             return Ok(());
         }
         // Silent argument
@@ -46,6 +46,9 @@ fn main() -> std::io::Result<()> {
         // No-color argument
         else if argument.to_lowercase() == "-n" || argument.to_lowercase() == "--nocolor" {
             color = false;
+        }
+        else if argument.to_lowercase() == "-v" || argument.to_lowercase() == "--version" {
+            println!("dog v{}", env!("CARGO_PKG_VERSION"));
         }
         else if argument.starts_with("http") {
             filepaths.push(PathBuf::from(argument));
