@@ -47,15 +47,19 @@ fn main() -> std::io::Result<()> {
         else if argument.to_lowercase() == "-n" || argument.to_lowercase() == "--nocolor" {
             color = false;
         }
+        // Version argument
         else if argument.to_lowercase() == "-v" || argument.to_lowercase() == "--version" {
             println!("dog v{}", env!("CARGO_PKG_VERSION"));
         }
-        else if argument.starts_with("http") {
+        // Recognize urls
+        else if argument.starts_with("http://") {
             filepaths.push(PathBuf::from(argument));
         }
+        // even if they don't have http://
         else if argument.ends_with(".com") {
             filepaths.push(PathBuf::from(format!("https://{}", argument)));
         }
+        // Assuming regular file
         else {
             filepaths.push(path.clone());
             filepaths.last_mut().unwrap().push(argument);
