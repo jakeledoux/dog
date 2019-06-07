@@ -1,6 +1,6 @@
 [package]
 name = "dog"
-version = "0.1.2"
+version = "0.1.3"
 authors = ["Jake Ledoux <contactjakeledoux@gmail.com>"]
 edition = "2018"
 description = "A cat clone with HTTP. Written by Jake Ledoux."

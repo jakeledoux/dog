@@ -59,7 +59,7 @@ fn main() -> std::io::Result<()> {
             filepaths.push(PathBuf::from(argument));
         }
         // even if they don't have http://
-        else if argument.ends_with(".com") {
+        else if argument.contains(".com") {
             filepaths.push(PathBuf::from(format!("https://{}", argument)));
         }
         // Assuming regular file
